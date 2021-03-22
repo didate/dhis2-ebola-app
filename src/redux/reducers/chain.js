@@ -1,16 +1,19 @@
-import { FETCH_EBOLA_POSITIVE } from "../types"
+import { FETCHING_EBOLA_POSITIVE, RECEIVED_EBOLA_POSITIVE } from "../types"
 
 const initialState = {
     data: null,
-    loading: false
+    loading: true
 }
 
 const fetchEbolaData = (state = initialState, action) => {
     const { type, payload } = action
 
+    console.log(payload);
     switch (type) {
-        case FETCH_EBOLA_POSITIVE:
+        case RECEIVED_EBOLA_POSITIVE:
             return { ...state, data: payload, loading: false }
+        case FETCHING_EBOLA_POSITIVE:
+            return { ...state, data: null, loading: true }
         default:
             return state;
     }
