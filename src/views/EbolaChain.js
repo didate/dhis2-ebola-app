@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { fetchEbolaData } from '../redux/actions/chain'
 import Graph from "react-graph-vis"
 import "./network.css";
+import { CircularLoader, Card } from "@dhis2/ui-core";
 
 const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     const engine = useDataEngine()
@@ -75,23 +76,29 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     }
     return !loading ?
         <div className="">
-            <div className="">
-                <ul>
-                    <li id="legend-probable">Cas probable</li>
-                    <li id="legend-confirme">Cas confirmé</li>
-                </ul>
-            </div>
-            <div className="">
-                <label>
-                    <input
-                        type="checkbox"
-                        defaultChecked={false}
-                        onChange={handleChange}
+            <Card>
+                <div className="">
+                    <ul>
+                        <li id="legend-probable">Cas probable</li>
+                        <li id="legend-confirme">Cas confirmé</li>
+                    </ul>
+                </div>
+                <div className="">
+                    <label>
+                        <input
+                            type="checkbox"
+                            defaultChecked={false}
+                            onChange={handleChange}
 
-                    /> Affichage hierarchique
+                        /> Affichage hierarchique
                 </label>
-            </div>
-            <Graph graph={data.graph} options={options} style={{ height: "100vh" }} /> </div> : <div>Loading .... </div>
+                </div>
+
+                <Graph graph={data.graph} options={options} style={{ height: "100vh" }} />
+            </Card> </div> : <div className="centered-loader">
+            <CircularLoader />
+            <span>Loading ....</span>
+        </div>
 
 
 

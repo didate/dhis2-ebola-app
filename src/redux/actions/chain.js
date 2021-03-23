@@ -110,7 +110,6 @@ export const fetchEbolaData = (engine) => async dispatch => {
 
         if (relationships) { //.httpStatusCode
 
-            console.log("Hello ", relationships)
             const indexToUpdate = nodesData.findIndex(n => n.id === element.id);
             nodesData[indexToUpdate].contacts = relationships.length;
             // nodesData[indexToUpdate].title = `${nodesData[indexToUpdate].title} \n ${relationships.length} Contact(s)`;

@@ -8,7 +8,6 @@ const initialState = {
 const fetchEbolaData = (state = initialState, action) => {
     const { type, payload } = action
 
-    console.log(payload);
     switch (type) {
         case RECEIVED_EBOLA_POSITIVE:
             return { ...state, data: payload, loading: false }
