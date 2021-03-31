@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { fetchEbolaData } from '../redux/actions/chain'
 import Graph from "react-graph-vis"
 import "./network.css";
-import { CircularLoader, Card } from "@dhis2/ui-core";
+import { CircularLoader } from "@dhis2/ui-core";
 
 const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     const engine = useDataEngine()
@@ -76,26 +76,38 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     }
     return !loading ?
         <div className="">
-            <Card>
-                <div className="">
-                    <ul>
-                        <li id="legend-probable">Cas probable</li>
-                        <li id="legend-confirme">Cas confirmé</li>
-                    </ul>
-                </div>
-                <div className="">
-                    <label>
-                        <input
-                            type="checkbox"
-                            defaultChecked={false}
-                            onChange={handleChange}
+            <div className="card">
+                <div className="card-header">
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <ul>
+                                <li id="legend-probable">Cas probable</li>
+                                <li id="legend-confirme">Cas confirmé</li>
+                            </ul>
+                        </div>
+                        <div className="col-sm-6">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    defaultChecked={false}
+                                    onChange={handleChange}
 
-                        /> Affichage hierarchique
-                </label>
+                                /> Affichage hierarchique
+                            </label>
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <Graph graph={data.graph} options={options} style={{ height: "100vh" }} />
-            </Card> </div> : <div className="centered-loader">
+                <div className="card-body">
+                    <Graph graph={data.graph} options={options} style={{ height: "100vh", width: "100%" }} />
+                </div>
+            </div> </div>
+
+        :
+
+        <div className="centered-loader">
             <CircularLoader />
             <span>Loading ....</span>
         </div>

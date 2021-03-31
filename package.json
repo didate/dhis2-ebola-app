@@ -17,11 +17,13 @@
     "@dhis2/app-runtime": "^2.8.0",
     "@dhis2/prop-types": "^2.0.3",
     "@dhis2/ui": "^5.0.5",
+    "bootstrap": "^4.6.0",
+    "font-awesome": "^4.2.0",
+    "react-graph-vis": "^1.0.7",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "react-graph-vis": "^1.0.7"
+    "redux-thunk": "^2.3.0"
   }
 }
