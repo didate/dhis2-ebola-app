@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { fetchEbolaData } from '../redux/actions/chain'
 import Graph from "react-graph-vis"
 import "./network.css";
-import { CircularLoader } from "@dhis2/ui-core";
+import { CircularLoader, Button } from "@dhis2/ui-core";
+import canvasToImage from 'canvas-to-image'
 
 const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     const engine = useDataEngine()
@@ -74,18 +75,26 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
             setOptions(nonHierarchicalOptions);
         }
     }
+    const download = () => {
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvasToImage(canvas, {
+            name: 'chain_de_transmission',
+            type: 'png',
+            quality: 1
+        })
+    }
     return !loading ?
         <div className="">
             <div className="card">
                 <div className="card-header">
                     <div className="row">
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <ul>
                                 <li id="legend-probable">Cas probable</li>
                                 <li id="legend-confirme">Cas confirmé</li>
                             </ul>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <label>
                                 <input
                                     type="checkbox"
@@ -95,13 +104,16 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
                                 /> Affichage hierarchique
                             </label>
                         </div>
+                        <div className="col-sm-4">
+                            <Button onClick={() => download()} primary>Télécharger</Button>
+                        </div>
                     </div>
 
 
                 </div>
 
                 <div className="card-body">
-                    <Graph graph={data.graph} options={options} style={{ height: "100vh", width: "100%" }} />
+                    <Graph id="chain" graph={data.graph} options={options} style={{ height: "100vh", width: "100%" }} />
                 </div>
             </div> </div>
 
