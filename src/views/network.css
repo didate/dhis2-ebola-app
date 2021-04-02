@@ -7,6 +7,28 @@
 .card-header {
     padding: .5rem 1.25rem !important;
 }
+
+.arrow-right:after {
+  content: "";
+  display: inline-block !important;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #C8A962;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  vertical-align: middle;
+
+}
+
+.arrow-right:before {
+  width: 20px;
+  height: 2px;
+  background: #C8A962;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .centered-loader {
     position: absolute;
     left: 0;

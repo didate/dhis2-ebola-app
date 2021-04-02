@@ -7,6 +7,35 @@ export const Legend = ({ data }) => {
 
     return (
         <div className="legend visualization-overlay">
+
+            <div className="leg-item">
+                <div style={{ color: 'blue' }}>
+                    &rarr;
+                </div>
+                <div className="leg-item-text">
+                    Non suivis
+                </div>
+            </div>
+
+            <div className="leg-item">
+                <div style={{ color: 'green' }}>
+                    &rarr;
+                </div>
+                <div className="leg-item-text">
+                    Suivis
+                </div>
+            </div>
+
+            <div className="leg-item">
+                <div style={{ color: 'black', }}>
+                    &rarr;
+                </div>
+                <div className="leg-item-text">
+                    Inconnus
+                </div>
+            </div>
+
+
             <div className="leg-item">
                 <div className="leg-item-symbol">
                     <div className="leg-item-symbol-circle symbol-border" style={{ backgroundColor: '#f2103a' }}>

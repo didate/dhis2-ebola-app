@@ -49,6 +49,8 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
         nodes: {
             size: 16
         },
+
+
         interaction: {
             dragNodes: true,
             hover: true

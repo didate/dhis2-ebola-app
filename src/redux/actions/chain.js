@@ -46,6 +46,7 @@ const query = {
                 'eX8qUeVEgr0.m3nu3nS6GV9:IN:Probable;Confirme par laboratoire',
                 'eX8qUeVEgr0.rkQEv1WFZ1u',
                 'f3OsLh60IS1.tmwSoQ3hCsb',
+                'f3OsLh60IS1.KedfjhucNJe',
                 'pe:THIS_YEAR'
             ],
             displayProperty: 'SHORTNAME',
@@ -100,6 +101,7 @@ export const fetchEbolaData = (engine) => async dispatch => {
             positifs: 0,
             classification: element[14],
             lien: element[16],
+            suivi: element[17],
             shape: 'icon', icon: icon
         });
     }
@@ -132,7 +134,8 @@ export const fetchEbolaData = (engine) => async dispatch => {
                     nodesData[indexToUpdate].positifs += 1;
                     edgeData.push({
                         from: element.id,
-                        to: currentRelationship.to.trackedEntityInstance.trackedEntityInstance
+                        to: currentRelationship.to.trackedEntityInstance.trackedEntityInstance,
+                        width: 1.5
                     }
                     );
                 }
@@ -142,6 +145,8 @@ export const fetchEbolaData = (engine) => async dispatch => {
 
                 if (indexEdgeToUpdate !== -1 && indexNodeToGetData !== -1) {
                     edgeData[indexEdgeToUpdate].label = nodesData[indexNodeToGetData].lien;
+                    edgeData[indexEdgeToUpdate].color = nodesData[indexNodeToGetData].suivi === 'Non' ? 'blue' : (nodesData[indexNodeToGetData].suivi === 'Oui' ? 'green' : '#000000'); //'#e8ac09' : '#f2103a'
+
                 }
 
             })
