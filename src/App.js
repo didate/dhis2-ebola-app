@@ -15,7 +15,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const MyApp = () => (
     <Provider store={store}>
-        <div className="container-fluid">
+        <div >
             <EbolaChain />
         </div>
     </Provider>

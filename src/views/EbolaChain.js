@@ -8,6 +8,7 @@ import Graph from "react-graph-vis"
 import "./network.css";
 import { CircularLoader, Button } from "@dhis2/ui-core";
 import canvasToImage from 'canvas-to-image'
+import { Legend } from './Legend'
 
 const EbolaChain = ({ fetchEbolaData, data, loading }) => {
     const engine = useDataEngine()
@@ -83,18 +84,12 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
             quality: 1
         })
     }
-    return !loading ?
+    return data ?
         <div className="">
             <div className="card">
                 <div className="card-header">
                     <div className="row">
-                        <div className="col-sm-4">
-                            <ul>
-                                <li id="legend-probable">Cas probable</li>
-                                <li id="legend-confirme">Cas confirmé</li>
-                            </ul>
-                        </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-8">
                             <label>
                                 <input
                                     type="checkbox"
@@ -105,7 +100,7 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
                             </label>
                         </div>
                         <div className="col-sm-4">
-                            <Button onClick={() => download()} primary>Télécharger</Button>
+                            <Button onClick={() => download()} primary className="float-right">Télécharger</Button>
                         </div>
                     </div>
 
@@ -113,7 +108,8 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
                 </div>
 
                 <div className="card-body">
-                    <Graph id="chain" graph={data.graph} options={options} style={{ height: "100vh", width: "100%" }} />
+                    <Legend data={data.graph} />
+                    <Graph id="chain" graph={data.graph} options={options} style={{ height: "670px", width: "100%" }} />
                 </div>
             </div> </div>
 

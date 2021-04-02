@@ -97,6 +97,7 @@ export const fetchEbolaData = (engine) => async dispatch => {
             contacts: 0,
             cds: 0,
             positifs: 0,
+            classification: element[14],
             shape: 'icon', icon: icon
         });
     }

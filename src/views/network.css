@@ -1,11 +1,11 @@
-#legend-probable {
-  color: #e8ac09;
+
+
+.card-body {
+    padding: 0px !important;
 }
 
-.fa { font-family: 'FontAwesome' !important; } 
-
-#legend-confirme {
-  color: #f2103a;
+.card-header {
+    padding: .5rem 1.25rem !important;
 }
 .centered-loader {
     position: absolute;
