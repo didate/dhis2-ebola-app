@@ -45,6 +45,7 @@ const query = {
                 'eX8qUeVEgr0.Mj4c07bIa9v',
                 'eX8qUeVEgr0.m3nu3nS6GV9:IN:Probable;Confirme par laboratoire',
                 'eX8qUeVEgr0.rkQEv1WFZ1u',
+                'f3OsLh60IS1.tmwSoQ3hCsb',
                 'pe:THIS_YEAR'
             ],
             displayProperty: 'SHORTNAME',
@@ -98,6 +99,7 @@ export const fetchEbolaData = (engine) => async dispatch => {
             cds: 0,
             positifs: 0,
             classification: element[14],
+            lien: element[16],
             shape: 'icon', icon: icon
         });
     }
@@ -125,15 +127,32 @@ export const fetchEbolaData = (engine) => async dispatch => {
 
 
                 let founds = nodesData.filter((node) => node.id === currentRelationship.to.trackedEntityInstance.trackedEntityInstance);
+
                 if (founds && founds.length > 0 && element.id !== currentRelationship.to.trackedEntityInstance.trackedEntityInstance) {
                     nodesData[indexToUpdate].positifs += 1;
-                    edgeData.push({ from: element.id, to: currentRelationship.to.trackedEntityInstance.trackedEntityInstance });
+                    edgeData.push({
+                        from: element.id,
+                        to: currentRelationship.to.trackedEntityInstance.trackedEntityInstance
+                    }
+                    );
                 }
+                // mise en oeuvre des liens source -> destination : source = element et destination = currentRelationship
+                const indexEdgeToUpdate = edgeData.findIndex(edge => edge.from === element.id && edge.to === currentRelationship.to.trackedEntityInstance.trackedEntityInstance);
+                const indexNodeToGetData = nodesData.findIndex(n => n.id === currentRelationship.to.trackedEntityInstance.trackedEntityInstance);
+
+                if (indexEdgeToUpdate !== -1 && indexNodeToGetData !== -1) {
+                    edgeData[indexEdgeToUpdate].label = nodesData[indexNodeToGetData].lien;
+                }
+
             })
             nodesData[indexToUpdate].cds = cds;
             nodesData[indexToUpdate].title = `${nodesData[indexToUpdate].title}\nCONTACTS : ${relationships.length}\nSUSPECTS : ${nodesData[indexToUpdate].cds}\nPOSITIFS : ${nodesData[indexToUpdate].positifs}`;
+
         }
     }
+
+    console.log(edgeData)
+
     dispatch({
         type: RECEIVED_EBOLA_POSITIVE,
         payload: {
