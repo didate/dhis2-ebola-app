@@ -66,8 +66,10 @@ const relationship = (tei) => {
         relationships: {
             resource: 'relationships',
             params: {
-                tei: `${tei}`
+                tei: `${tei}`,
+                fields: 'from'
             }
+
         }
     }
 }
@@ -155,8 +157,6 @@ export const fetchEbolaData = (engine) => async dispatch => {
 
         }
     }
-
-    console.log(edgeData)
 
     dispatch({
         type: RECEIVED_EBOLA_POSITIVE,

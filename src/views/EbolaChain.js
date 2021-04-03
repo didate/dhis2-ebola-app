@@ -87,33 +87,32 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
         })
     }
     return data ?
-        <div className="">
-            <div className="card">
-                <div className="card-header">
-                    <div className="row">
-                        <div className="col-sm-8">
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    defaultChecked={false}
-                                    onChange={handleChange}
+        <div className="card">
+            <div className="card-header">
+                <div className="row">
+                    <div className="col-sm-8">
+                        <label>
+                            <input
+                                type="checkbox"
+                                defaultChecked={false}
+                                onChange={handleChange}
 
-                                /> Affichage hierarchique
+                            /> Affichage hierarchique
                             </label>
-                        </div>
-                        <div className="col-sm-4">
-                            <Button onClick={() => download()} primary className="float-right">Télécharger</Button>
-                        </div>
                     </div>
-
-
+                    <div className="col-sm-4">
+                        <Button onClick={() => download()} primary className="float-right">Télécharger</Button>
+                    </div>
                 </div>
 
-                <div className="card-body">
-                    <Legend data={data.graph} />
-                    <Graph id="chain" graph={data.graph} options={options} style={{ height: "670px", width: "100%" }} />
-                </div>
-            </div> </div>
+
+            </div>
+
+            <div className="card-body">
+                <Legend data={data.graph} />
+                <Graph id="chain" graph={data.graph} options={options} style={{ height: "100%", width: "100%" }} />
+            </div>
+        </div>
 
         :
 

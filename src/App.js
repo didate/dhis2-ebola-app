@@ -15,9 +15,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const MyApp = () => (
     <Provider store={store}>
-        <div >
-            <EbolaChain />
-        </div>
+        <EbolaChain />
     </Provider>
 )
 
