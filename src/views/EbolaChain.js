@@ -24,6 +24,10 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
         nodes: {
             size: 16
         },
+        edges: {
+
+            font: { align: "top", size: 12, color: '#343434' }
+        },
         interaction: {
             dragNodes: true,
             hover: true,
@@ -49,8 +53,10 @@ const EbolaChain = ({ fetchEbolaData, data, loading }) => {
         nodes: {
             size: 16
         },
+        edges: {
 
-
+            font: { align: "top", size: 12, color: '#343434' }
+        },
         interaction: {
             dragNodes: true,
             hover: true

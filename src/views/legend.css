@@ -15,6 +15,11 @@
     line-height: 20px;
 }
 
+.leg-item-arrow {
+    font-size: 20px;
+    font-weight: 900;
+}
+
 .leg-item-symbol-circle {
     border-radius: 500px;
     height: 20px;

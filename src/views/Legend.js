@@ -1,5 +1,6 @@
 import './legend.css'
 
+
 export const Legend = ({ data }) => {
 
     const countConfirme = data.nodes.filter(item => item.classification === "Confirme par laboratoire").length
@@ -9,7 +10,7 @@ export const Legend = ({ data }) => {
         <div className="legend visualization-overlay">
 
             <div className="leg-item">
-                <div style={{ color: 'blue' }}>
+                <div className="leg-item-arrow" style={{ color: 'blue' }}>
                     &rarr;
                 </div>
                 <div className="leg-item-text">
@@ -18,7 +19,7 @@ export const Legend = ({ data }) => {
             </div>
 
             <div className="leg-item">
-                <div style={{ color: 'green' }}>
+                <div className="leg-item-arrow" style={{ color: 'green' }}>
                     &rarr;
                 </div>
                 <div className="leg-item-text">
@@ -27,7 +28,7 @@ export const Legend = ({ data }) => {
             </div>
 
             <div className="leg-item">
-                <div style={{ color: 'black', }}>
+                <div className="leg-item-arrow" style={{ color: 'black' }}>
                     &rarr;
                 </div>
                 <div className="leg-item-text">

@@ -47,6 +47,9 @@ const query = {
                 'eX8qUeVEgr0.rkQEv1WFZ1u',
                 'f3OsLh60IS1.tmwSoQ3hCsb',
                 'f3OsLh60IS1.KedfjhucNJe',
+                'EjZwjdYgk4k.DLUnZ9WmE6n',
+                'eX8qUeVEgr0.BoqFcB4FVTh',
+                'eX8qUeVEgr0.X2ewZ9nk3r0',
                 'pe:THIS_YEAR'
             ],
             displayProperty: 'SHORTNAME',
@@ -94,9 +97,12 @@ export const fetchEbolaData = (engine) => async dispatch => {
             size: 30,
             color: element[14] === 'Probable' ? '#e8ac09' : '#f2103a'
         }
+
+        // label: `${element[11].substring(0, 1).toUpperCase()}${element[12].substring(0, 1).toUpperCase()}${calculAge(element[19], element[20])},${setCaseIssu(element[18])}`,
+
         nodesData.push({
             id: element[1],
-            label: `${element[11].substring(0, 1).toUpperCase()}${element[12].substring(0, 1).toUpperCase()}`,
+            label: `${calculAge(element[19], element[20])} ans, ${setCaseIssu(element[18])}`,
             title: `ID : ${element[10].toUpperCase()}\nNOM : ${element[11].toUpperCase()} ${element[12].toUpperCase()}`,
             contacts: 0,
             cds: 0,
@@ -111,16 +117,12 @@ export const fetchEbolaData = (engine) => async dispatch => {
 
     for (let index = 0; index < nodesData.length; index++) {
         const element = nodesData[index];
-        //const res = await dhis2.get(`/33/relationships.json?tei=${element.id}`);
         const { relationships } = await engine.query(relationship(element.id));
-        // const relationships = res.data;
 
-        if (relationships) { //.httpStatusCode
+        if (relationships) {
 
             const indexToUpdate = nodesData.findIndex(n => n.id === element.id);
             nodesData[indexToUpdate].contacts = relationships.length;
-            // nodesData[indexToUpdate].title = `${nodesData[indexToUpdate].title} \n ${relationships.length} Contact(s)`;
-
 
             let cds = 0;
             relationships.forEach((currentRelationship) => {
@@ -170,4 +172,25 @@ export const fetchEbolaData = (engine) => async dispatch => {
         }
     });
 
+}
+
+const setCaseIssu = (issu) => {
+
+    if (issu === 'Sortie Gueri') {
+        return 'SG'
+    } else if (issu === 'Deces hospitalier') {
+        return 'DH'
+    } else if (issu === 'Deces communautaire') {
+        return 'DC'
+    } else if (issu === 'Evade') {
+        return 'PV'
+    } else {
+        return 'V'
+    }
+}
+
+const calculAge = (consultation, naissance) => {
+    const date1 = new Date(consultation)
+    const date2 = new Date(naissance)
+    return date1.getFullYear() - date2.getFullYear()
 }
